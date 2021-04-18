@@ -8,4 +8,4 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 require('./controllers/AnimeController')(app);
 
-app.listen(3000);
+app.listen(3001);

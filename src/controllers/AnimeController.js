@@ -1,6 +1,7 @@
 const express = require('express');
 const anime = require('../model/anime');
 const mongoose = require("../database");
+const {now} = require("mongoose");
 const router = express.Router()
 router.post('/anime', async (req, res) => {
     try {
@@ -14,7 +15,7 @@ router.post('/anime', async (req, res) => {
 
         anime.save()
             .then(anime => {
-                    console.info("POST: ", req.headers['user-agent'], req.headers.host, "Make new anime:", anime)
+                    console.info("POST: ", req.headers['user-agent'], "Make new anime at:", now(), anime)
                     res.status(201)
                         .send({
                             "anime:": anime.name,
@@ -33,14 +34,16 @@ router.post('/anime', async (req, res) => {
     }
 })
 router.get('/anime', async (req, res) => {
-    console.info("GET: ", req.headers['user-agent'], req.headers.host, "Make request")
+    console.info("GET: ", req.headers['user-agent'], "Make request at: ", now())
     const Anime = mongoose.model("anime");
-    let animeList = {};
+    let animeList = [];
     Anime.find({}, (err, animes) => {
         animes.forEach(anime => {
-            animeList[anime.number] = anime
+            animeList.push(anime)
         })
-        res.status(200).send({"AnimeList: ": animeList})
+        res.status(200).send({
+            "AnimeList": animeList
+        })
     })
 })
 
