@@ -2,5 +2,3 @@
 /.idea
 /.env
 /functions/
-/dist/*
-!/dist
