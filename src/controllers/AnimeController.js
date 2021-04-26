@@ -2,7 +2,6 @@ const express = require('express');
 const anime = require('../model/anime');
 const mongoose = require("../database");
 const moment = require('moment-timezone');
-const dateSP= moment.tz(Date.now(), "America/Sao_Paulo");
 const router = express.Router()
 router.post('/anime', async (req, res) => {
     try {
@@ -30,7 +29,7 @@ router.post('/anime', async (req, res) => {
     }
 })
 router.get('/anime', async (req, res) => {
-    console.info("GET: ", req.socket.remoteAddress, "Make request at: ", dateSP)
+    console.info("GET: ", req.socket.remoteAddress, "Make request at: ", moment.tz(Date.now(), process.env.TIME))
     const Anime = mongoose.model("anime");
     let animeList = [];
     Anime.find({}, (err, animes) => {
