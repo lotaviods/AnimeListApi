@@ -3,6 +3,7 @@ const anime = require('../model/anime');
 const mongoose = require("../database");
 const {now} = require("mongoose");
 const router = express.Router()
+
 router.post('/anime', async (req, res) => {
     try {
         const Anime = mongoose.model("anime");
@@ -42,4 +43,4 @@ router.get('/anime', async (req, res) => {
     })
 })
 
-module.exports = app => app.use("/api/", router)
+module.exports = app => app.use("/api", router)
