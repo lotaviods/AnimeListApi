@@ -6,11 +6,6 @@ const animeSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    number:{
-        type: Intl,
-        required:false,
-        unique: true
-    },
     description:{
         type: String,
         required: false

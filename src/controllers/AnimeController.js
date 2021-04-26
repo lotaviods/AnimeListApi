@@ -9,24 +9,19 @@ router.post('/anime', async (req, res) => {
 
         const anime = new Anime();
 
-        anime.description = req.body.description;
-        anime.number = req.body.number;
-        anime.name = req.body.name;
+        let newAnime = animeConstructor({
+            anime: anime,
+            description: anime.description,
+            name: req.body.name
+        })
 
-        anime.save()
-            .then(anime => {
-                    console.info("POST: ", req.headers['user-agent'], "Make new anime at:", now(), anime)
-                    res.status(201)
-                        .send({
-                            "anime:": anime.name,
-                            "number": anime.number,
-                            "description": anime.description
-                        })
-                }, error => {
-                    console.error(error)
-                    res.status(400).send({"error": error})
-                }
-            )
+        newAnime.save().then(anime => {
+            console.info("New anime saved:", anime),
+                res.status(201).send({"anime": anime.name})
+        }, error => {
+            console.info("Error")
+            res.status(500).send()
+        })
     } catch (e) {
         res.status(500)
         res.send({error: "Internal server error"})
