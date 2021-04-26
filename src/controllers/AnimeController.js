@@ -29,7 +29,7 @@ router.post('/anime', async (req, res) => {
     }
 })
 router.get('/anime', async (req, res) => {
-    console.info("GET: ", request.headers['x-forwarded-for'], "Make request at: ", now())
+    console.info("GET: ", req.headers['x-forwarded-for'], "Make request at: ", now())
     const Anime = mongoose.model("anime");
     let animeList = [];
     Anime.find({}, (err, animes) => {
