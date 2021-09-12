@@ -44,10 +44,16 @@ router.delete('/anime', async(req, res) => {
     const Anime = mongoose.model("anime");
 
     try {
-        let resposta = Anime.deleteOne({ name: req.body.name })
-        res.status(200)
-        res.send(resposta)
-        console.info("DELETE OK - ", resposta)
+        Anime.deleteOne({ name: req.body.name }).then(function() {
+            res.status(200)
+            res.send("OK")
+            console.info("DELETE OK - ", resposta)
+        }).catch(function(error) {
+            res.status(500)
+            res.send({ error: "Internal server error" })
+            console.error(e)
+        });
+
 
     } catch (e) {
         res.status(500)
