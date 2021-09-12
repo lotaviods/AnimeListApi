@@ -44,7 +44,7 @@ router.delete('/anime', async(req, res) => {
     const Anime = mongoose.model("anime");
 
     try {
-        let resposta = Anime.deleteOne({ "name": req.body.name })
+        let resposta = Anime.deleteOne({ name: req.body.name })
         res.status(200)
         res.send(resposta)
         console.info("DELETE OK - ", resposta)
