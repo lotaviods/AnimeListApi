@@ -8,13 +8,9 @@ router.post('/anime', async(req, res) => {
     try {
         const Anime = mongoose.model("anime");
 
-        const anime = new Anime();
+        const newAnime = new Anime();
 
-        let newAnime = animeConstructor.animeConstructor({
-            anime: anime,
-            description: anime.description,
-            name: req.body.name
-        })
+        newAnime.name = req.body.name
 
         newAnime.save().then(anime => {
             console.info("New anime saved:", anime),
