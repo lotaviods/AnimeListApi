@@ -1,13 +1,17 @@
 const mongoose = require('../database')
 
 const animeSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         unique: true,
         required: true
     },
-    description:{
+    description: {
         type: String,
+        required: false
+    },
+    number: {
+        type: Number,
         required: false
     },
     createdAt: {
