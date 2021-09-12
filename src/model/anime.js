@@ -10,10 +10,6 @@ const animeSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    number: {
-        type: Number,
-        required: false
-    },
     createdAt: {
         type: Date,
         default: Date.now
