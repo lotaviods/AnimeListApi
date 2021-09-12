@@ -16,7 +16,7 @@ router.post('/anime', async(req, res) => {
             console.info("New anime saved:", anime),
                 res.status(201).send({ "anime": anime.name })
         }, error => {
-            console.info("Error")
+            console.info(error)
             res.status(500).send()
         })
     } catch (e) {
