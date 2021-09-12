@@ -3,7 +3,7 @@ const anime = require('../model/anime');
 const mongoose = require("../database");
 const moment = require('moment-timezone');
 const router = express.Router()
-const animeConstructor = require("../helper/AnimeConstructor")
+
 router.post('/anime', async(req, res) => {
     try {
         const Anime = mongoose.model("anime");
