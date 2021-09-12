@@ -46,7 +46,7 @@ router.delete('/anime', async(req, res) => {
     try {
         Anime.deleteOne({ name: req.body.name }).then(function() {
             res.status(200)
-            console.info("DELETE OK - ", resposta)
+            console.info("DELETE OK - Removed anime")
             res.send("OK")
         }).catch(function(error) {
             res.status(500)
