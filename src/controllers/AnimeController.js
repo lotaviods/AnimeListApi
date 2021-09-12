@@ -5,6 +5,7 @@ const moment = require('moment-timezone');
 const router = express.Router()
 
 router.post('/anime', async(req, res) => {
+    console.info("POST: ", req.socket.remoteAddress, "Make request at: ", moment.tz(Date.now(), process.env.TIME))
     try {
         const Anime = mongoose.model("anime");
 
@@ -38,5 +39,22 @@ router.get('/anime', async(req, res) => {
         })
     })
 })
+router.delete('/anime', async(req, res) => {
+    console.info("DELETE: ", req.socket.remoteAddress, "Make request at: ", moment.tz(Date.now(), process.env.TIME))
+    const Anime = mongoose.model("anime");
 
+    try {
+        let resposta = Anime.deleteOne({ "name": req.body.name })
+        res.status(200)
+        res.send(resposta)
+        console.info("DELETE OK - ", resposta)
+
+    } catch (e) {
+        res.status(500)
+        res.send({ error: "Internal server error" })
+        console.error(e)
+    }
+
+
+})
 module.exports = app => app.use("/api/", router)
